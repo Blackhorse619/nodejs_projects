@@ -14,11 +14,16 @@ const addNote = function(title,body){
   //comparing it with title parameter and if matches then returns that specific object whose
   //title value matches the title in the parameter so duplicateNotes also becomes an array of objects
 
-  const duplicateNotes = notes.filter(function(note){
-    return note.title === title
-  })
+  // const duplicateNotes = notes.filter(function(note){
+  //   return note.title === title
+  // })
 
-  if(duplicateNotes.length === 0){
+  //Using duplicateNote instead of duplicateNotes as the first one uses find fucntion which
+  //returns the first match whereas filter keeps on searching for all the element to find a match
+  //which is not required as one match is enough.
+  const duplicateNote = notes.find((note) => note.title === title)
+
+  if(!duplicateNote){
     notes.push({
       title:title,
       body:body
