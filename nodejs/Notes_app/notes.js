@@ -4,6 +4,7 @@ const getNotes = function(){
   return 'Your notes...'
 }
 
+
 //Adding a Note
 
 const addNote = function(title,body){
