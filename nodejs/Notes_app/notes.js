@@ -1,9 +1,5 @@
 const fs = require('fs')
 const chalk = require('chalk')
-const getNotes = function(){
-  return 'Your notes...'
-}
-
 
 //Adding a Note
 
@@ -64,6 +60,21 @@ const listNotes = () => {
     console.log(note.title)
   })
 }
+//============================================================================================
+
+//Reading a note, here we have used arrow functions
+const readNote = (title) => {
+  const notes = loadNotes()
+  const note = notes.find((note) => note.title === title)
+
+  if(note){
+    console.log(chalk.blue.inverse(note.title))
+    console.log(note.body)
+  }else{
+    console.log(chalk.red('Note not found'))
+  }
+
+}
 
 
 const saveNote = function(notes){
@@ -78,8 +89,6 @@ const saveNote = function(notes){
 //an array of objects as .parse method returns object if given object and returns an array if
 //given an array.
 
-
-
 const loadNotes = function(){
   try{
     const dataBuffer = fs.readFileSync('notes.json')
@@ -90,17 +99,11 @@ const loadNotes = function(){
   }
 }
 
-
-
-
-
-
-
 //Exporting modules
 
 module.exports = {
-  getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
-  listNotes: listNotes
+  listNotes: listNotes,
+  readNote: readNote
 }
