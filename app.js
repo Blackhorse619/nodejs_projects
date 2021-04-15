@@ -1,12 +1,22 @@
 const geocode =require('./utils/geocode')
 const forecast =require('./utils/forecast')
 
-geocode('lahore',(error,data) => {
-  console.log('Error:',error)
-  console.log('Data:',data)
-})
+const address = process.argv[2]
 
-forecast(74.360106,31.497754,(error,data) => {
-  console.log('Error: ',error)
-  console.log('Data: ',data)
-})
+if(!address){
+  console.log("Please provide an address")
+}else{
+  geocode('lahore',(error,data) => {
+    if(error){
+      return console.log(error)
+    }
+    forecast(74.360106,31.497754,(error,forecastedData) => {
+      if(error){
+        return console.log(error)
+      }
+      console.log(data.location)
+      console.log(forecastedData)
+    })
+  })
+
+}
