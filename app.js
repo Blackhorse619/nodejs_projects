@@ -6,16 +6,16 @@ const address = process.argv[2]
 if(!address){
   console.log("Please provide an address")
 }else{
-  geocode('lahore',(error,data) => {
+  geocode(address,(error,data) => {
     if(error){
       return console.log(error)
     }
-    forecast(74.360106,31.497754,(error,forecastedData) => {
+    forecast(data.latitude,data.longitude,(error,forecastedData) => {
       if(error){
         return console.log(error)
       }
-      console.log(data.location)
-      console.log(forecastedData)
+      console.log('The temperature in '+data.location+' is '+forecastedData.temp+
+      ' and its feels like '+forecastedData.feelslike+' and its '+forecastedData.weat_desc)
     })
   })
 
