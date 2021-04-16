@@ -6,15 +6,15 @@ const address = process.argv[2]
 if(!address){
   console.log("Please provide an address")
 }else{
-  geocode(address,(error,data) => {
+  geocode(address,(error,{latitude,longitude,location}) => {
     if(error){
       return console.log(error)
     }
-    forecast(data.latitude,data.longitude,(error,forecastedData) => {
+    forecast(latitude,longitude,(error,forecastedData) => {
       if(error){
         return console.log(error)
       }
-      console.log('The temperature in '+data.location+' is '+forecastedData.temp+
+      console.log('The temperature in '+location+' is '+forecastedData.temp+
       ' and its feels like '+forecastedData.feelslike+' and its '+forecastedData.weat_desc)
     })
   })
